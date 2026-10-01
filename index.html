@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#07030f">
+<title>MEDINA — LITTLE UNIVERSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════ CURSOR ══════════ -->
+<div id="cursor"><div class="cursor-glow"></div><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+
+<!-- ══════════ ATMOSPHERE LAYERS ══════════ -->
+<canvas id="bg-canvas"></canvas>
+<div class="aurora a1"></div>
+<div class="aurora a2"></div>
+<div class="aurora a3"></div>
+<div class="aurora a4"></div>
+<div class="beams"></div>
+<div class="beams b2"></div>
+<div class="nebula n1"></div>
+<div class="nebula n2"></div>
+<div class="nebula n3"></div>
+<div id="grain"></div>
+<div id="vignette"></div>
+<div id="flash"></div>
+
+<!-- ══════════ HUD ══════════ -->
+<div id="hud">
+  <div class="hud-dot"></div>
+  <div class="hud-title">MEDINA · OS</div>
+  <div class="hud-sub" id="hud-sub">SYSTEM BOOT</div>
+</div>
+<div id="hud-page"><span id="hud-cur">00</span><i></i><span>08</span></div>
+<div id="hud-coord">43.2380° N · 76.8899° E</div>
+
+<!-- ══════════ TRANSITION LAYERS ══════════ -->
+<div id="trans-overlay"></div>
+<div id="sweep"></div>
+<div id="ripple-layer"></div>
+
+<!-- ══════════ INTRO ══════════ -->
+<section id="intro">
+  <canvas id="intro-canvas"></canvas>
+  <div class="intro-content">
+    <div class="intro-kicker" id="intro-kicker">✦ &nbsp;LITTLE UNIVERSE&nbsp; ✦</div>
+    <h1 id="intro-title" data-split>MEDINA</h1>
+    <p id="intro-sub"><span id="typewriter"></span><span id="caret"></span></p>
+    <button id="open-universe" class="btn-glass magnetic"><span>ОТКРЫТЬ ВСЕЛЕННУЮ</span></button>
+  </div>
+</section>
+
+<!-- ══════════ APP ══════════ -->
+<main id="app">
+
+  <section class="page" id="page-home" data-page="home">
+    <div class="page-inner">
+      <div class="kicker rv">01 · THE BEGINNING</div>
+      <h2 class="cinematic">
+        <span class="line">Некоторые люди</span>
+        <span class="line">появляются в жизни</span>
+        <span class="line accent">совершенно случайно…</span>
+      </h2>
+      <h2 class="cinematic second">
+        <span class="line">…а потом становятся</span>
+        <span class="line accent">её важной частью.</span>
+      </h2>
+      <div class="divider rv"><i></i>✦<i></i></div>
+      <div class="scroll-hint rv"><span class="dot-pulse"></span>нажми на звезду внизу — она откроет карту вселенной</div>
+    </div>
+  </section>
+
+  <section class="page" id="page-medina" data-page="medina">
+    <div id="three-wrap"><canvas id="three-canvas"></canvas></div>
+    <div class="page-inner medina-inner">
+      <div class="kicker rv">02 · THE CORE</div>
+      <div class="portal" id="portal">
+        <div class="gb"><div class="gb-in portal-card">
+          <div class="portal-face portal-front">
+            <div class="pf-star"></div>
+            <h2 id="medina-title" data-split>MEDINA</h2>
+            <p>one of the brightest characters<br>in my story</p>
+            <div class="tap-hint">коснись, чтобы открыть портал</div>
+          </div>
+          <div class="portal-face portal-back">
+            <p class="bp">Ты умеешь делать обычный день немного особенным.</p>
+            <p class="bp">С тобой даже обычные разговоры становятся воспоминаниями.</p>
+            <p class="bp">Некоторые люди просто остаются в памяти.</p>
+            <div class="tap-hint">коснись снова, чтобы закрыть</div>
+          </div>
+        </div></div>
+      </div>
+      <div class="orb-hint rv">коснись сферы — она ответит светом · вращай её пальцем</div>
+    </div>
+  </section>
+
+  <section class="page" id="page-memories" data-page="memories">
+    <div class="page-inner full">
+      <div class="kicker rv">03 · MEMORIES</div>
+      <h2 class="page-title rv">Фрагменты цифрового дневника</h2>
+      <div class="divider rv"><i></i>✦<i></i></div>
+      <div id="mem-viewport"><div id="mem-track"></div></div>
+      <div id="mem-dots"></div>
+      <div class="swipe-hint rv">тяни карточку в сторону</div>
+    </div>
+  </section>
+
+  <section class="page" id="page-constellation" data-page="constellation">
+    <div class="page-inner">
+      <div class="kicker rv">04 · CONSTELLATION</div>
+      <h2 class="page-title rv">Соедини звёзды пальцем</h2>
+      <div class="divider rv"><i></i>✦<i></i></div>
+      <div id="const-wrap"><canvas id="const-canvas"></canvas></div>
+      <div id="const-msg" class="hidden">
+        <p>Ты только что создала<br>своё созвездие.</p>
+        <button id="const-reset" class="btn-glass small"><span>RESET</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-secret" data-page="secret">
+    <div class="page-inner">
+      <div class="kicker rv">05 · SECRET ROOM</div>
+      <p class="secret-lead rv">Здесь находится кое-что,<br>что нельзя открыть случайно.</p>
+      <div class="door-scene" id="door-scene">
+        <div class="door-light"></div>
+        <div class="door" id="door"><div class="door-glow"></div><div class="door-handle"></div></div>
+        <div class="secret-reveal" id="secret-reveal">
+          <canvas id="secret-canvas"></canvas>
+          <p class="sr-line">Если ты дошла сюда,</p>
+          <p class="sr-line">значит ты действительно исследовала<br>этот маленький мир.</p>
+          <p class="sr-sign">— сделано вручную, для Медины</p>
+        </div>
+      </div>
+      <div class="tap-hint rv">нажми на дверь</div>
+    </div>
+  </section>
+
+  <section class="page" id="page-words" data-page="words">
+    <div class="page-inner full">
+      <div class="kicker rv">06 · WORDS</div>
+      <h2 class="page-title rv">Слова, из которых всё состоит</h2>
+      <div id="words-space"></div>
+      <div id="words-msg" class="hidden"><p>Все слова стали светом.</p><button id="words-reset" class="btn-glass small"><span>ВЕРНУТЬ СЛОВА</span></button></div>
+    </div>
+  </section>
+
+  <section class="page" id="page-sky" data-page="sky">
+    <div class="page-inner full">
+      <div class="kicker rv">07 · THE SKY</div>
+      <div id="sky-wrap"><canvas id="sky-canvas"></canvas></div>
+      <div class="sky-hint rv">проводи пальцем по небу — оставляй свет</div>
+    </div>
+  </section>
+
+  <section class="page" id="page-final" data-page="final">
+    <canvas id="final-canvas"></canvas>
+    <div class="page-inner final-inner">
+      <div id="final-content">
+        <h2 id="final-title" data-split>MEDINA</h2>
+        <p class="f-line big">Спасибо, что ты есть.</p>
+        <p class="f-line">Это не просто сайт.</p>
+        <p class="f-line dim">Это маленький мир,<br>который я сделал специально для тебя.</p>
+        <div id="the-end" class="f-line">THE END?</div>
+        <button id="not-yet" class="btn-glass magnetic hidden"><span>NOT YET</span></button>
+      </div>
+      <div id="final-msg" class="hidden">
+        <p>Вселенная не заканчивается.<br>Она просто ждёт следующего раза.</p>
+        <button id="final-home" class="btn-glass small"><span>ВЕРНУТЬСЯ В НАЧАЛО</span></button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ NAV ══════════ -->
+<button id="nav-fab" class="magnetic" aria-label="menu">
+  <span class="fab-core"></span>
+  <span class="fab-ring"></span>
+  <span class="fab-orbit o1"></span>
+  <span class="fab-orbit o2"></span>
+</button>
+<nav id="nav-menu" aria-hidden="true"></nav>
+
+<!-- ══════════ CONTROLS ══════════ -->
+<div id="controls">
+  <button id="mode-btn" class="ctrl"><span class="c-ico">◈</span><span class="c-label">ULTRA</span></button>
+  <button id="sound-btn" class="ctrl"><span class="c-ico">♪</span><span class="c-label" id="sound-label">SOUND OFF</span></button>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
